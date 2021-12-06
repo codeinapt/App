@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local1="clr-namespace:App"
+             mc:Ignorable ="d"
+             x:Class="App.ListviewDetails">
+    
+    <ContentPage.BindingContext>
+        <local1:MainViewModel></local1:MainViewModel>
+        
+    </ContentPage.BindingContext>
+    
+    <ListView ItemsSource="{Binding Products}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Grid Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                                    <ColumnDefinition Width="1.5*" ></ColumnDefinition>
+                                    <ColumnDefinition Width=".5*" ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding ProductName}" Grid.Column="1" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                <Image Source="{Binding CollImage}" Grid.Row="1" Grid.Column="2"></Image>
+                                <Image Source="{Binding ExpImage}" Grid.Row="2" Grid.Column="2"></Image>
+                            </Grid>
+                            <BoxView VerticalOptions="Center" HeightRequest="1" IsVisible="{Binding IsVisible}" HorizontalOptions="FillAndExpand" BackgroundColor="Red" Color="DarkGray"></BoxView>
+                            <ListView ItemsSource="{Binding Poduct_Details}" IsVisible="{Binding IsVisible}" HasUnevenRows="True"  HeightRequest="180" Margin="10">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Padding="0">
+                                                <Grid Padding="0" Margin="10">
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="1*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.8*" />
+                                                        <ColumnDefinition Width="1.8*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label Grid.Column="0" VerticalOptions="Center" Grid.Row="0" Text="{Binding Key}" FontAttributes="Bold" />
+                                                    <Label Text="{Binding Value}" Grid.Column="1" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Italic" />
+                                                    
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>    
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+</ContentPage>      
